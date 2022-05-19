@@ -1,5 +1,5 @@
 {
-    "name": "Servo test",
+    "name": "AutoWinder",
     "description": "",
     "dependencies": {
         "core": "*",
