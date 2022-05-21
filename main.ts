@@ -1,12 +1,11 @@
 // モーター２(巻き取り位置送り）制御
 input.onPinPressed(TouchPin.P0, function () {
-    if (ns > 0) {
-        ContinuousServo.spin_one_way_with_speed(AnalogPin.P1, M2speed)
-        basic.pause(450)
-        ContinuousServo.turn_off_motor(DigitalPin.P1)
-        ns += -1
-    } else {
-        ns = 32
+    ContinuousServo.spin_one_way_with_speed(AnalogPin.P1, M2speed)
+    basic.pause(1020)
+    ContinuousServo.turn_off_motor(DigitalPin.P1)
+    ns += 1
+    if (ns >= 10) {
+        ns = 0
         M2speed = M2speed * -1
     }
 })
@@ -53,10 +52,11 @@ let digit100 = 0
 let digit10 = 0
 let cnt = 0
 let toggleSW = 0
+pins.digitalWritePin(DigitalPin.P16, 0)
 toggleSW = 1
 cnt = 0
 digit10 = 0
 digit100 = 0
 // 巻き取り位置移動ピッチ0.2mm/半回転x32=6.4mm
-ns = 32
-M2speed = -20
+ns = 0
+M2speed = -30
